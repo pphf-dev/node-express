@@ -1,12 +1,15 @@
-const express = require('express') //no filepath needed b/c installed in node_modules
+const express = require('express'); //no filepath needed b/c installed in node_modules
+const morgan = require('morgan');
 
 const hostname = 'localhost';
 const port = 3000;
 
 const app = express();
+app.use(morgan('dev')); //log using dev version so more info displayed on screen
+
+app.use(express.static(__dirname + '/public')); //__dirname is special variable in Node = absolute path of the current directory of the file it is in
 
 app.use((req, res) => {
-    console.log(req.headers);
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     res.end('<html><body><h1>This is an Express Server</h1></body></html>');
