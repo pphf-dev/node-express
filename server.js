@@ -2,6 +2,8 @@ const express = require('express'); //no filepath needed b/c installed in node_m
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionRouter = require('./routes/promotionRouter');
+const partnerRouter = require('./routes/partnerRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -11,6 +13,8 @@ app.use(morgan('dev')); //log using dev version so more info displayed on screen
 app.use(bodyParser.json()); //middleware that parses json formatted data into properties of the request object to make it easier to access the data
 
 app.use('/campsites', campsiteRouter);
+app.use('/promotions', promotionRouter);
+app.use('/partners', partnerRouter);
 
 app.use(express.static(__dirname + '/public')); //__dirname is special variable in Node = absolute path of the current directory of the file it is in
 
